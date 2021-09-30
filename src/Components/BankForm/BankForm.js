@@ -84,8 +84,58 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
     setShow(true);
   }
   
-
-
+  const handleDisabled = () => {
+    if (label === 'Create Account') {
+      if (email !== '' || password !== '' || name !== '') {
+        return false
+      } else {
+        return true
+      }
+    }
+    if (label === 'Login') {
+      if (email !== '' || password !== '') {
+        return false
+      } else {
+        return true
+      }
+    }
+    // disable when user is not loged in
+    if (!hideAmount) {
+      if (label === 'Withdraw') {
+        if (!balance || !userLoged) {
+          return true
+        }
+        if (amount !== '') {
+          if (amount !== 0) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      } else if (label === 'Deposit') {
+        if (!userLoged) {
+          return true
+        }
+        if (amount !== '') {
+          if (amount !== 0) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      }
+    } else if (balance) {
+      if (balance <= 0) {
+        return true
+      }
+    } else {
+      return false
+    }
+  }
   
   return(
 
@@ -157,7 +207,7 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
                   title={(label === 'Withdraw' || label === 'Deposit' ) ? 'Confirm transaction' : 'Click to Login'}
                   variant="contained"
                   color="primary"
-                  disabled={(!hideAmount && (label === 'Withdraw' && (!balance || !userLoged))) ? true : (balance && balance <= 0) } onClick={handleBankForm} >{label}</Button>
+                  disabled={handleDisabled()} onClick={handleBankForm} >{label}</Button>
                 </Fragment>
               ):(
                 <Fragment>

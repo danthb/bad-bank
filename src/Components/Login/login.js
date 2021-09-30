@@ -21,7 +21,8 @@ export default function Login() {
           setCurrentUser(userLoged[0])
         } else {
           setCurrentUser(false)
-        }
+      }
+    
       }
 
     useEffect(() => {
@@ -63,7 +64,7 @@ export default function Login() {
                 />
               {
                 userNotFound &&
-                <p style={{textAlign: 'center'}}>Please register</p>
+                <p style={{textAlign: 'center'}}>Please register</p> 
               }
               </Fragment>
               : <Fragment></Fragment>
