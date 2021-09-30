@@ -1,6 +1,5 @@
 import React, {createContext} from "react";
 
-
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
@@ -36,7 +35,6 @@ export default function AuthProvider({ children }) {
         login,
         logout,
         isLogedIn
-      
     }
     return (
         <AuthContext.Provider value={contextValue}>

@@ -10,7 +10,7 @@ export default function AllData() {
             <div class="card text-center">
                 
                 <div class="card-header">
-                    <h5>All Data</h5>
+                    <h5>Bank's Data</h5>
                 </div>
                 <div class="card-body">
                 <table className="table">

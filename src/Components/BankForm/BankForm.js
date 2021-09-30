@@ -2,8 +2,8 @@ import React, { Fragment, useState, useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { AuthContext } from "../Auth/AuthProvider";
-import { Link} from 'react-router-dom';
-import {Card} from '../../context'
+import { Link } from 'react-router-dom';
+import {Card } from '../../context'
 export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,successButton}){
 
   const auth = useContext(AuthContext);
@@ -51,8 +51,7 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
     }
     return true;
   }
-  function handleBankForm(){
-    
+  function handleForm(){
     if (hideAmount) {
       if (label !== 'Login') {
         if (!validateDataUser(name,     'name')) return;
@@ -71,7 +70,7 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
     if (!isNaN(Number(e.target.value))) {
       setAmount(e.target.value)
     } else {
-      alert('Please write only positive numbers')
+      alert('Only positive amounts are allowed')
     }
   }
   
@@ -84,7 +83,7 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
     setShow(true);
   }
   
-  const handleDisabled = () => {
+  const buttonDisabled = () => {
     if (label === 'Create Account') {
       if (email !== '' || password !== '' || name !== '') {
         return false
@@ -99,7 +98,7 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
         return true
       }
     }
-    // disable when user is not loged in
+    // buttonDisabled when there isn't user logged
     if (!hideAmount) {
       if (label === 'Withdraw') {
         if (!balance || !userLoged) {
@@ -138,17 +137,12 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
   }
   
   return(
-
-    
       <Card
-            
             bgcolor={bgcolor}
             bgheader={bgheader}
             header={label}
             status={status}
             body={show ? (
-           
-            
                 <Fragment>
                 {
                   hideAmount
@@ -197,7 +191,8 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
                         id="amount"
                         placeholder={'Enter Amount'}
                         value={amount}
-                        onChange={handleAmount} /><br />
+                        onChange={handleAmount} />
+                      <br />
                   </Fragment>
                 }
                 <br />
@@ -207,7 +202,10 @@ export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,succe
                   title={(label === 'Withdraw' || label === 'Deposit' ) ? 'Confirm transaction' : 'Click to Login'}
                   variant="contained"
                   color="primary"
-                  disabled={handleDisabled()} onClick={handleBankForm} >{label}</Button>
+                  disabled={buttonDisabled()}
+                  onClick={handleForm} >
+                  {label}
+                </Button>
                 </Fragment>
               ):(
                 <Fragment>

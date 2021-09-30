@@ -20,7 +20,7 @@ export default function Deposit(){
 
     if (Number(data.amount) >= 0) {
       auth.users[index].balance += Number(data.amount)
-      alert("Transaction done")
+      alert(`Transaction done, your balance is $${auth.users[index].balance}`)
       /* setSuccess(true) */
     } else {
       alert("You can't make operations with negative amounts")

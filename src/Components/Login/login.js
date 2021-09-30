@@ -1,14 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
-/* import { useHistory, useLocation } from "react-router-dom"; */
 import BankForm from '../BankForm/BankForm';
 import useAuth from "../Auth/useAuth"
 
 export default function Login() {
     
-/*     const [show, setShow]= useState(true);
-    const history = useHistory();
-    const location = useLocation(); */
-   /*  const previusURL = location.state?.from; */
 
     const auth = useAuth();
     const [currenUser, setCurrentUser] = useState('')
@@ -31,8 +26,6 @@ export default function Login() {
   
     function handle(data) {
     
-        /* auth.login(); */
-        /* history.push(previusURL || '/balance') */
         let user = auth.users.filter(user => user.email === data.email)
         if ( user.length > 0){
         let index = auth.users.indexOf(user[0])

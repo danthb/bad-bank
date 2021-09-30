@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import {Card} from "../../context"
-/* import BankForm from "../BankForm/BankForm"; */
 
 export default function Balance() {
     const auth = React.useContext(AuthContext);
@@ -14,7 +13,6 @@ export default function Balance() {
     }
     return (
       <Fragment>
-        {/* <h2> Welcome {auth.users[index].name} </h2> */}
           <Card
             bgcolor={'lightblue'}
             label="Balance"

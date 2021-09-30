@@ -3,15 +3,10 @@ import React, { Fragment} from 'react';
 import { Card } from '../../../src/context'
 
 export default function Home() {
-/*     const auth = React.useContext(AuthContext);
-    let user = auth.users.filter(user => user.isLogedU === true)
-    let index;
-    if (user.length > 0) {
-        index = auth.users.indexOf(user[0])
-      } */
+
     return (
         <Fragment>
-           {/*  {user[0].isLogedU && <h2> Welcome {auth.users[index].name} </h2>} */}
+           
             <Card
                 bgcolor="black"
                 txtcolor='white'

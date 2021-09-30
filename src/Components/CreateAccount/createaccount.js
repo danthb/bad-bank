@@ -6,7 +6,7 @@ export default function CreateAccount() {
 
     const auth = React.useContext(AuthContext);  
 
-    function handleCreate(newUser){
+    function handle(newUser){
       auth.users.push({name: newUser.name, email: newUser.email, password: newUser.password, balance: 100, isLoged: false
       })
       console.log()
@@ -18,9 +18,9 @@ export default function CreateAccount() {
         bgcolor="black"
         txtcolor='white'
         label="Create Account"
-        handle={handleCreate}
+        handle={handle}
         hideAmount={true}
-        successButton="Add nother account"
+        successButton="Create another account"
     />
     )
   }
