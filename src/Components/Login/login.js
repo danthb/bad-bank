@@ -13,8 +13,8 @@ export default function Login() {
     const auth = useAuth();
     const [currenUser, setCurrentUser] = useState('')
     const [userNotFound, setUserNotFound] = useState(false)
-    const { login, users }= useAuth();
-
+    const { login, users } = useAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function findlogedUser(){
         let userLoged = auth.users.filter(user => user.isLogedU === true)
         if (userLoged.length > 0) {
@@ -26,7 +26,7 @@ export default function Login() {
 
     useEffect(() => {
         findlogedUser()
-      }, [users])
+      }, [findlogedUser, users])
   
     function handle(data) {
     
@@ -54,7 +54,8 @@ export default function Login() {
               !currenUser ?
               <Fragment>
                 <BankForm
-                  bgcolor="secondary"
+                  bgcolor="black"
+                  txtcolor='white'
                   label="Login"
                   handle={handle}
                   hideAmount={true}
@@ -62,7 +63,7 @@ export default function Login() {
                 />
               {
                 userNotFound &&
-                <p>Please register</p>
+                <p style={{textAlign: 'center'}}>Please register</p>
               }
               </Fragment>
               : <Fragment></Fragment>

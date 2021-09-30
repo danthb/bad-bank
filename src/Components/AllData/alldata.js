@@ -1,13 +1,18 @@
 import React, { useContext, Fragment } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
-
+import {div} from 'bootstrap';
 
 
 export default function AllData() {
     const auth = useContext(AuthContext);  
     return (
         <Fragment>
-            <h5>All Data</h5>
+            <div class="card text-center">
+                
+                <div class="card-header">
+                    <h5>All Data</h5>
+                </div>
+                <div class="card-body">
                 <table className="table">
                     <thead>
                     <tr >
@@ -31,7 +36,12 @@ export default function AllData() {
                         ))
                     }
                     </tbody>
-                </table>  
+                </table>
+                </div>
+                <div class="card-footer text-muted">
+                Up to date
+                </div>
+            </div>
         </Fragment>
        
     )

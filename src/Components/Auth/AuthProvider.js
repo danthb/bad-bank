@@ -5,19 +5,9 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
 
-    const [users, setUsers] = React.useState([{ name: 'abel', email: 'abel@espe.edu', password: 'secret123', balance: 100, isLogedU: false }])
+    const [users, setUsers] = React.useState([{ name: 'User', email: 'user@email.com', password: '12345678', balance: 100, isLogedU: false }])
     const[isLoged, setIsLoged] = React.useState(false)
-/*     const [user, setUser] = React.useState(
-        JSON.parse(localStorage.getItem('user')) || null
-    ); */
 
-/*     useEffect(() => {
-        try {
-            localStorage.setItem('user', JSON.stringify(user))
-        } catch (error) {
-            console.log('error in local storage')
-        }
-    }, [user]) */
     
     function login(user){
         const index = users.indexOf(user)
@@ -42,7 +32,6 @@ export default function AuthProvider({ children }) {
     }
     
     const contextValue = {
-     /*    user, */
         users,
         login,
         logout,

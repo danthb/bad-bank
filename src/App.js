@@ -12,7 +12,7 @@ const CreateAccount = lazy(() => import('./Components/CreateAccount/createaccoun
 const Login         = lazy(() => import('./Components/Login/login'));
 const Deposit       = lazy(() => import('./Components/Deposit/deposit'));
 const Withdraw      = lazy(() => import('./Components/WithDraw/withdraw'));
-const Balance       = lazy(() => import('./Components/Balance/balance'));
+/* const Balance       = lazy(() => import('./Components/Balance/balance')); */
 const AllData       = lazy(() => import('./Components/AllData/alldata'));
 const PrivateRoute = lazy(() => import('./Components/Routers/PrivateRoute'))
 const PublicRoute  = lazy(() => import('./Components/Routers/PublicRoute'))
@@ -41,7 +41,7 @@ export default function App() {
             
                   <PrivateRoute exact path='/deposit' component={Deposit} />
                   <PrivateRoute exact path='/withdraw' component={Withdraw} />
-                  <PrivateRoute exat path='/balance' component={Balance} />
+                  {/* <PrivateRoute exat path='/balance' component={Balance} /> */}
                   <PrivateRoute path='/alldata' component={AllData} />
                   {/* <Route path='*' component={NotFound} /> */}
                 </div>

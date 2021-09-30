@@ -11,7 +11,7 @@ export function Card(props){
     return (
         <UserContext.Provider >
             {children}
-            <div className={classes()} style={{ maxWidth: '18rem' }}>
+            <div className={classes()} style={{ maxWidth: '16rem', marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', borderRadius: '20px' }}>
                 <div className='card-header'>{props.header}</div>
                 <div className='card-body'>
                     {props.title && (<h5 className='card-title'>{props.title}</h5>)}

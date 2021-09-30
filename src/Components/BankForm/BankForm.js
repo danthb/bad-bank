@@ -1,23 +1,24 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { AuthContext } from "../Auth/AuthProvider";
+import { Link} from 'react-router-dom';
 import {Card} from '../../context'
-export default function BankForm({
-  bgcolor,
-  bgheader,
-  label,
-  handle,
-  hideAmount,
-  successButton
-}){
-  const auth = useContext(AuthContext); 
+export default function BankForm({bgcolor,bgheader,label,handle,hideAmount,successButton}){
+
+  const auth = useContext(AuthContext);
+  
   const [show, setShow]         = useState(true);
   const [status, setStatus]     = useState('');
-  const [name, setName]         = useState('');
-  const [email, setEmail]       = useState('');
-  const [password, setPassword] = useState('');
   const [amount, setAmount]       = useState('');
   const [balance, setBalance] = useState('');
   const [userLoged, setUserLogged] = useState('');
+
+// UserData
+  const [name, setName]         = useState('');
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+
 
   function getBalance(){
     let userLoged = auth.users.filter(user => user.isLogedU === true);
@@ -34,13 +35,19 @@ export default function BankForm({
     if (!hideAmount) {
       getBalance()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show])
 
-  function validateData(field, label){
+  function validateDataUser(field, label){
     if (!field) {
-      setStatus('Error: missing ' + label);
+      setStatus('Please enter ' + label);
       setTimeout(() => setStatus(''),3000);
       return false;
+    }
+    if (label === 'password' && field.length < 8) {
+      setStatus('Please enter at least 8 characters');
+      setTimeout(() => setStatus(''),3000);
+      return false
     }
     return true;
   }
@@ -48,70 +55,131 @@ export default function BankForm({
     
     if (hideAmount) {
       if (label !== 'Login') {
-        if (!validateData(name,     'name')) return;
+        if (!validateDataUser(name,     'name')) return;
       }
-      if (!validateData(email,    'email'))    return;
-      if (!validateData(password, 'password')) return;
+      if (!validateDataUser(email,    'email'))    return;
+      if (!validateDataUser(password, 'password')) return;
     } else {
-      if (!validateData(amount, 'amount')) return;
+      if (!validateDataUser(amount, 'amount')) return;
     }
-    let data = {
-      name,
-      email,
-      password,
-      amount
-    }
-    handle(data)
+    let dataUser = {name,email,password,amount}
+    handle(dataUser)
     setShow(false);
-  }  
-  function clearForm(){
+  }
+  const handleAmount = (e) => {
+    // console.log(e.target.value);
+    if (!isNaN(Number(e.target.value))) {
+      setAmount(e.target.value)
+    } else {
+      alert('Please write only positive numbers')
+    }
+  }
+  
+
+  function clean(){
     setName('');
     setEmail('');
     setPassword('');
     setAmount('');
     setShow(true);
   }
+  
 
 
+  
   return(
-    <Card
-      bgcolor={bgcolor}
-      bgheader={bgheader}
-      header={label}
-      status={status}
-      body={show ? (  
-        <Fragment>
-        {
-          hideAmount
-          ? <Fragment>
-            {label !== 'Login' &&
-            <Fragment>
-              Name<br/>
-              <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
-            </Fragment>
-            }
-            Email address<br/>
-            <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
-            Password<br/>
-            <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-          </Fragment>
-          :
-          <Fragment>
-            Balance: ${userLoged ? balance : "Login first"} <br/>
-            <br />
-            {label + ' Amount'}
-            <br />
-            <input type="input" className="form-control" id="amount" placeholder={label + ' Amount'} value={amount} onChange={e => setAmount(Number(e.currentTarget.value))}/><br/>
-          </Fragment>
-        }
-        <button type="submit" title='btn' id='submit' className="btn btn-light" disabled={(!hideAmount && (label === 'Withdraw' && !balance || !userLoged)) ? true : (balance && balance <= 0) } onClick={handleBankForm}>{label}></button>
-        </Fragment>
-      ):(
-        <Fragment>
-        <h6>Message</h6>
-        <button type="submit" className="btn btn-light" onClick={clearForm}>{successButton}</button>
-        </Fragment>
-      )}
-    />
+
+    
+      <Card
+            
+            bgcolor={bgcolor}
+            bgheader={bgheader}
+            header={label}
+            status={status}
+            body={show ? (
+           
+            
+                <Fragment>
+                {
+                  hideAmount
+                  ? <Fragment>
+                    {label !== 'Login' &&
+                    <Fragment>
+                      Name
+                        <br />
+                        <TextField
+                          name='name'
+                          id="name"
+                          placeholder="Enter name"
+                          value={name}
+                          onChange={e => setName(e.currentTarget.value)} />
+                        <br />
+                    </Fragment>
+                      }
+                      <br />
+                      Email <br/>
+                      <TextField
+                        name="email"
+                        type="email"
+                        id="email"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={e => setEmail(e.currentTarget.value)}/>
+                      <br />
+                      <br />
+                      Password<br />
+                      <TextField
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={e => setPassword(e.currentTarget.value)} />
+                      <br />
+                  </Fragment>
+                  :
+                  <Fragment>
+                    Balance: ${userLoged ? balance : null} <br/>
+                    <br />
+                    {label + ' Amount'}
+                    <br />
+                      <input
+                        type="input"
+                        id="amount"
+                        placeholder={'Enter Amount'}
+                        value={amount}
+                        onChange={handleAmount} /><br />
+                  </Fragment>
+                }
+                <br />
+                <Button
+                  type="submit"
+                  id='submit'
+                  title={(label === 'Withdraw' || label === 'Deposit' ) ? 'Confirm transaction' : 'Click to Login'}
+                  variant="contained"
+                  color="primary"
+                  disabled={(!hideAmount && (label === 'Withdraw' && (!balance || !userLoged))) ? true : (balance && balance <= 0) } onClick={handleBankForm} >{label}</Button>
+                </Fragment>
+              ):(
+                <Fragment>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={clean}>
+                    {successButton}
+                  </Button>
+                  {label === 'Create Account' ? <Button
+                    type="submit"
+                    variant="contained"
+                    title='Click to go the Login'
+                    color="secundary">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </Button> : null}
+                </Fragment>
+            
+            )}
+            />
+       
+
   )
 }
