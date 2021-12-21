@@ -44,22 +44,22 @@ export default function Nav() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="navbar-collapse " id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 " style={{ alignItems:'end'}}>
-                        <li className="nav-item" >
-                            <NavLink className="nav-link p-2 flex-column-1 " aria-current="page" exact to="/">Home</NavLink>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0  aligment" style={{ alignItems:'end'}}>
+                        <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="Landing page" >
+                            <NavLink className="nav-link p-2 flex-column-1 aligment" aria-current="page" exact to="/" >Home</NavLink>
                         </li>
                     {currentUser ?  
                         <Fragment>
                                 {/* <li className="nav-item">
                                     <NavLink className="nav-link"  title='balance' to="/balance">Balance</NavLink>
                                 </li> */}
-                            <li className="nav-item" style={{alignSelf:'flex-end'}}>
-                                    <NavLink className="nav-link" to="/deposit">Deposit</NavLink>
+                            <li className="nav-item aligment" >
+                                    <NavLink className="nav-link" data-toggle="tooltip" data-placement="bottom" title="Here to make deposits" to="/deposit">Deposit</NavLink>
                             </li>
-                            <li className="nav-item" style={{alignSelf:'flex-end'}}>
-                                <NavLink className="nav-link" to="/withdraw">Withdraw</NavLink>
+                            <li className="nav-item aligment" >
+                                <NavLink className="nav-link" data-toggle="tooltip" data-placement="bottom" title="Here to make withdraws" to="/withdraw">Withdraw</NavLink>
                             </li>
-                            <li className="nav-item" style={{alignSelf:'flex-end'}} data-toggle="tooltip" data-placement="bottom" title="Transaction Information of this Bank">
+                            <li className="nav-item aligment"  data-toggle="tooltip" data-placement="bottom" title="Transaction Information of this Bank">
                                 <NavLink className="nav-link" to="/alldata">All Data</NavLink>
                             </li>
                         </Fragment>
