@@ -33,7 +33,7 @@ export default function App() {
           <Suspense fallback = {<div>loading...</div>}>
             <NavBar />
             <div>
-              <UserContext.Provider >
+              <UserContext >
                 <div className="container" style={{ padding: "20px" }}>
                   <Route path='/' exact component={Home} /> 
                   <PublicRoute path='/createaccount' component={CreateAccount} />
@@ -45,7 +45,7 @@ export default function App() {
                   <PrivateRoute path='/alldata' component={AllData} />
                   {/* <Route path='*' component={NotFound} /> */}
                 </div>
-              </UserContext.Provider>
+              </UserContext>
             </div>
           </Suspense>
         </Switch>
