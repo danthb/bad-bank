@@ -1,0 +1,2 @@
+(this["webpackJsonpbad-bank"]=this["webpackJsonpbad-bank"]||[]).push([[13],{105:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return i}));var a=n(0),c=n(19),s=n(1);function i(){return Object(s.jsx)(a.Fragment,{children:Object(s.jsx)(c.a,{bgcolor:"black",txtcolor:"white",header:"Landing Page",title:"Welcome to your Bank",text:"You can use this Bank",body:Object(s.jsx)("img",{src:"bank.png",className:"img-fluid",alt:"Responsive",fill:"red"})})})}}}]);
+//# sourceMappingURL=13.16a812b3.chunk.js.map
