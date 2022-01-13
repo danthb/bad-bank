@@ -13,7 +13,7 @@ describe('test of rendering of the App', () => {
         getByText('loading...')
     });
 
-    test('Login', () => {
+    /* test('Login', () => {
         const mockHandler = jest.fn();
         const component = render(<AuthProvider><Login /></AuthProvider>);
         const balanceComponent = render(<AuthProvider><Balance/></AuthProvider>)
@@ -24,7 +24,7 @@ describe('test of rendering of the App', () => {
         const button = screen.getByTitle('btn');
         userEvent.click(button);
         balanceComponent.getByText('Welcome');
-    });
+    }); */
    
 })
 
