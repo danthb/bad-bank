@@ -19,13 +19,8 @@ const PublicRoute  = lazy(() => import('./Components/Routers/PublicRoute'))
 /* const NotFound      = lazy(() => import('./Components/NotFound/notfound')); */
 
 
-/* const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-console.log(domain)
-console.log(clientId) */
-
 export default function App() {
-/*   const auth = useAuth(); */
+
   return (
     
       <Router>
@@ -33,7 +28,7 @@ export default function App() {
           <Suspense fallback = {<div>loading...</div>}>
             <NavBar />
             <div>
-              <UserContext >
+              <UserContext.Provider >
                 <div className="container" style={{ padding: "20px" }}>
                   <Route path='/' exact component={Home} /> 
                   <PublicRoute path='/createaccount' component={CreateAccount} />
@@ -43,9 +38,8 @@ export default function App() {
                   <PrivateRoute exact path='/withdraw' component={Withdraw} />
                   {/* <PrivateRoute exat path='/balance' component={Balance} /> */}
                   <PrivateRoute path='/alldata' component={AllData} />
-                  {/* <Route path='*' component={NotFound} /> */}
-                </div>
-              </UserContext>
+              </div>
+              </UserContext.Provider>
             </div>
           </Suspense>
         </Switch>
